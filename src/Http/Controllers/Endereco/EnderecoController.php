@@ -32,7 +32,6 @@ class EnderecoController extends Controller {
         $validate = $this->validate($data, [
             'cep' => 'required|string|max:10',
             'uf' => 'required|string|max:2',
-            'codigo' => 'required|int',
             'cidade' => 'required|string|max:150',
             'rua' => 'required|string|max:255',
             'bairro' => 'required|string|max:255',
@@ -75,7 +74,6 @@ class EnderecoController extends Controller {
         $validate = $this->validate($data, [
             'cep' => 'required|string|max:10',
             'uf' => 'required|string|max:2',
-            'codigo' => 'required|int',
             'cidade' => 'required|string|max:150',
             'rua' => 'required|string|max:255',
             'bairro' => 'required|string|max:255',

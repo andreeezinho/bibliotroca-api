@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Repositories\Imagem;
+namespace App\Domain\Repositories\Livro;
 
-interface ImagemRepositoryInterface {
+interface LivroRepositoryInterface {
 
     public function all(array $params);
 
