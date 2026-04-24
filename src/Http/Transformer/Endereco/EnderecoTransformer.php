@@ -10,13 +10,11 @@ class EnderecoTransformer {
         return [
             'uuid' => $data->uuid,
             'cep' => $data->cep,
-            'uf' => $data->uf,
-            'codigo' => $data->codigo,
-            'cidade' => $data->cidade,
             'rua' => $data->rua,
             'bairro' => $data->bairro,
             'numero' => $data->numero,
             'complemento' => $data->complemento,
+            'usuarios_id' => $data->usuarios_id,
             'ativo' => $data->ativo,
             'created_at' => $data->created_at,
             'updated_at' => $data->updated_at

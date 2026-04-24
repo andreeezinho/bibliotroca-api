@@ -7,6 +7,7 @@ use App\Http\Request\Request;
 use App\Http\Transformer\Livro\LivroTransformer;
 use App\Domain\Repositories\Livro\LivroRepositoryInterface;
 use App\Domain\Repositories\Categoria\CategoriaRepositoryInterface;
+use App\Domain\Repositories\User\UserRepositoryInterface;
 use App\Infra\Services\JWT\JWT;
 use App\Infra\Services\File\FileService;
 
@@ -14,11 +15,13 @@ class LivroController extends Controller {
 
     protected $livroRepository;
     protected $categoriaRepository;
+    protected $userRepository;
     protected $fileService;
 
-    public function __construct(LivroRepositoryInterface $livroRepository, CategoriaRepositoryInterface $categoriaRepository, FileService $fileService){
+    public function __construct(LivroRepositoryInterface $livroRepository, CategoriaRepositoryInterface $categoriaRepository, UserRepositoryInterface $userRepository, FileService $fileService){
         $this->livroRepository = $livroRepository;
         $this->categoriaRepository = $categoriaRepository;
+        $this->userRepository = $userRepository;
         $this->fileService = $fileService;
     }
 
@@ -63,9 +66,9 @@ class LivroController extends Controller {
 
         $image = $request->getFileParams();
 
-        $image = $this->fileService->uploadFile($data['imagem'], '/img/livros');
+        $image = $this->fileService->uploadFile($data['imagem'], '/img/livros')['hash_name'] ?? null;
 
-        $data = array_merge(['categorias_id' => $categoria->id, 'usuarios_id' => $user['id']], $data);
+        $data = array_merge($data, ['imagem' => $image, 'categorias_id' => $categoria->id, 'usuarios_id' => $this->userRepository->findBy('uuid', $user['uuid'])->id]);
 
         $livro = $this->livroRepository->create($data);
 

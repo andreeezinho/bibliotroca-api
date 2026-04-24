@@ -13,12 +13,11 @@ class Endereco {
     public int $id;
     public ?string $uuid;
     public string $cep;
-    public string $uf;
-    public string $cidade;
     public string $rua;
     public string $bairro;
     public string $numero;
     public ?string $complemento;
+    public int $usuarios_id;
     public int $ativo;
     public ?string $created_at;
     public ?string $updated_at;
