@@ -4,7 +4,7 @@
 *.swo
 *~
 
-/logs/app.log
+# /logs/app.log
 
 /.env
 
