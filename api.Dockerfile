@@ -23,7 +23,7 @@ WORKDIR /var/www/html
 
 COPY . .
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx-config/nginx.conf /etc/nginx/conf.d/default.conf
 COPY start.sh /start.sh
 
 RUN chmod +x /start.sh
