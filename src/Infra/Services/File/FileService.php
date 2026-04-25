@@ -15,7 +15,7 @@ class FileService {
             return null;
         }
 
-        $root_dir = rtrim($_SERVER['DOCUMENT_ROOT'] . '/tmp' . $dir, "/") . '/';
+        $root_dir = rtrim($_SERVER['DOCUMENT_ROOT'] . '/public' . $dir, "/") . '/';
 
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
 
