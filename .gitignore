@@ -6,8 +6,6 @@
 
 # /logs/app.log
 
-/.env
-
 /vendor/
 
 public/img/users/**
