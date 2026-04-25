@@ -39,7 +39,7 @@ class LivroController extends Controller {
     public function store(Request $request){
         $user = JWT::validateToken($request->getHeaders('Authorization'));  
 
-        $data = $request->getBodyParams();
+        $data = json_decode($request->getBodyParams()['livro'], true);
         $file = $request->getFileParams();
 
         $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
