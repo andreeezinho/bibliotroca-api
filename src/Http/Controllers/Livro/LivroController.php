@@ -40,7 +40,7 @@ class LivroController extends Controller {
         $user = JWT::validateToken($request->getHeaders('Authorization'));  
 
         $data = $request->all();
-        dd($request->getFileParams());
+        dd($request->getBodyParams());
         $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
 
         if(is_null($categoria)){
