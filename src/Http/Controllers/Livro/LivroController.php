@@ -37,15 +37,10 @@ class LivroController extends Controller {
     }
 
     public function readImage(Request $request, string $imagem){
-        if (file_exists('/tmp/img/livros/'. $imagem)) {
-            header('Content-Type: image/png');
-            readfile($imagem);
-            exit;
-        }
-
-        return $this->respJson([
-            'message' => 'Não foi possível ler imagem'
-        ], 500);
+        file_exists('/tmp/img/livros/'. $imagem);
+        header('Content-Type: image/png');
+        readfile($imagem);
+        exit;
     }
 
     public function store(Request $request){
