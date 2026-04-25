@@ -3,6 +3,7 @@
 namespace App\Http\Transformer\Livro;
 
 use App\Domain\Models\Livro\Livro;
+use App\Http\Transformer\User\UserTransformer;
 
 class LivroTransformer {
 
@@ -15,7 +16,7 @@ class LivroTransformer {
             'categorias_id' => $data->categorias_id,
             'descricao' => $data->descricao,
             'estado' => $data->estado,
-            'usuarios_id' => $data->usuarios_id,
+            'usuarios_id' => UserTransformer::transform($this->userRepository->findBy('id', $data->usuarios_id)),
             'ativo' => $data->ativo,
             'created_at' => $data->created_at,
             'updated_at' => $data->updated_at
