@@ -23,6 +23,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs
+
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY start.sh /start.sh
 
