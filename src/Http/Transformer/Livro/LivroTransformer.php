@@ -15,6 +15,7 @@ class LivroTransformer {
             'categorias_id' => $data->categorias_id,
             'descricao' => $data->descricao,
             'estado' => $data->estado,
+            'imagem' => $data->imagem,
             'usuarios_id' => $data->usuarios_id,
             'ativo' => $data->ativo,
             'created_at' => $data->created_at,
