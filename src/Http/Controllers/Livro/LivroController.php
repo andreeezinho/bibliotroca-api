@@ -39,8 +39,9 @@ class LivroController extends Controller {
     public function store(Request $request){
         $user = JWT::validateToken($request->getHeaders('Authorization'));  
 
-        $data = $request->all();
-        dd($request->getBodyParams());
+        $data = $request->getBodyParams();
+        $file = $request->getFileParams();
+
         $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
 
         if(is_null($categoria)){
@@ -66,7 +67,7 @@ class LivroController extends Controller {
 
         $image = $request->getFileParams();
 
-        $image = $this->fileService->uploadFile($data['imagem'], '/img/livros')['hash_name'] ?? null;
+        $image = $this->fileService->uploadFile($file['imagem'], '/img/livros')['hash_name'] ?? null;
 
         $data = array_merge($data, ['imagem' => $image, 'categorias_id' => $categoria->id, 'usuarios_id' => $this->userRepository->findBy('uuid', $user['uuid'])->id]);
 
