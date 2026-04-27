@@ -125,10 +125,10 @@ class LivroController extends Controller {
         }
 
         $validate = $this->validate($data, [
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-            'paginas' => 'required|int',
-            'estado' => 'required|string|max:255',
+            'titulo' => 'string|max:255',
+            'autor' => 'string|max:255',
+            'paginas' => 'int',
+            'estado' => 'string|max:255',
             'trocado' => 'max:1',
             'ativo' => 'max:1'
         ]);
