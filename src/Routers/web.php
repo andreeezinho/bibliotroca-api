@@ -59,6 +59,7 @@ $router->create("GET", "/livros/user/{uuid}", [$livroController, 'getUserBooks']
 $router->create("GET", "/public/img/livros/{imagem}", [$livroController, 'readImage'], null);
 $router->create("POST", "/livros", [$livroController, 'store'], $auth);
 $router->create("PUT", "/livros/{uuid}", [$livroController, 'update'], $auth);
+$router->create("PUT", "/livros/{uuid}/imagem", [$livroController, 'updateImage'], $auth);
 $router->create("DELETE", "/livros/{uuid}", [$livroController, 'destroy'], $auth);
 
 //categorias

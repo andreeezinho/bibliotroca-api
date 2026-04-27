@@ -138,6 +138,32 @@ class LivroController extends Controller {
         ], 201);
     }
 
+    public function updateImage(Request $request, string $uuid){
+        $livro = $this->livroRepository->findBy('uuid', $uuid);
+
+        if(is_null($livro)){
+            return $this->respJson([
+                'message' => 'Livro não encontrado'
+            ], 422);
+        }
+
+        $file = $request->getFileParams();
+
+        $image = $this->fileService->uploadFile($file['imagem'], '/img/livros')['hash_name'] ?? null;
+
+        $livro = $this->livroRepository->update(['imagem' => $image], $livro->id);
+
+        if(is_null($livro)){
+            return $this->respJson([
+                'message' => 'Não foi possível atualizar imagem do livro'
+            ], 500);
+        }
+
+        return $this->respJson([
+            'message' => 'Sucesso ao atualizar imagem do livro'
+        ], 201);
+    }
+
     public function destroy(Request $request, $uuid){
         $livro = $this->livroRepository->findBy('uuid', $uuid);
 
