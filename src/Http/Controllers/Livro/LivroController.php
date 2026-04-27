@@ -124,22 +124,6 @@ class LivroController extends Controller {
             ], 422);
         }
 
-        $validate = $this->validate($data, [
-            'titulo' => 'string|max:255',
-            'autor' => 'string|max:255',
-            'paginas' => 'int',
-            'estado' => 'string|max:255',
-            'trocado' => 'max:1',
-            'ativo' => 'max:1'
-        ]);
-
-        if(is_null($validate)){
-            return $this->respJson([
-                'message' => 'Dados inválidos',
-                'errors' => $this->getErrors()
-            ], 422);
-        }
-
         $livro = $this->livroRepository->update($data, $livro->id);
 
         if(is_null($livro)){
