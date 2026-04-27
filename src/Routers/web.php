@@ -55,6 +55,7 @@ $router->create("DELETE", "/enderecos/{uuid}", [$enderecoController, 'destroy'],
 
 //livros
 $router->create("GET", "/livros", [$livroController, 'index'], $auth);
+$router->create("GET", "/livros/user/{uuid}", [$livroController, 'getUserBooks'], $auth);
 $router->create("GET", "/public/img/livros/{imagem}", [$livroController, 'readImage'], null);
 $router->create("POST", "/livros", [$livroController, 'store'], $auth);
 $router->create("PUT", "/livros/{uuid}", [$livroController, 'update'], $auth);
