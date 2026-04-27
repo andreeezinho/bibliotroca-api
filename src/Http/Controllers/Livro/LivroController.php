@@ -43,6 +43,27 @@ class LivroController extends Controller {
         exit;
     }
 
+    public function getUserBooks(Request $request, string $userUuid){
+        $user = $this->userRepository->findBy('uuid', $userUuid);
+
+        if(is_null($user)){
+            return $this->respJson([
+                'message' => 'Usuário não encontrado'
+            ], 422);
+        }
+
+        $params = $request->all();
+
+        $params = array_merge($params, ['usuarios_id' => $user->id]);
+
+        $livros = $this->livroRepository->all($params);
+
+        return $this->respJson([
+            'message' => 'Livros listados',
+            'data' => LivroTransformer::transformArray($livros)
+        ]);
+    }
+
     public function store(Request $request){
         $user = JWT::validateToken($request->getHeaders('Authorization'));  
 
