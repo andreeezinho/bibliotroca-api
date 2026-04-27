@@ -129,6 +129,7 @@ class LivroController extends Controller {
             'autor' => 'required|string|max:255',
             'paginas' => 'required|int',
             'estado' => 'required|string|max:255',
+            'trocado' => 'max:1',
             'ativo' => 'max:1'
         ]);
 

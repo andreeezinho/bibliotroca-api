@@ -20,6 +20,7 @@ class Livro {
     public string $estado;
     public ?string $imagem;
     public int $usuarios_id;
+    public int $trocado;
     public int $ativo;
     public ?string $created_at;
     public ?string $updated_at;
