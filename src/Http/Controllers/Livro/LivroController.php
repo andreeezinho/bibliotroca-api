@@ -124,15 +124,17 @@ class LivroController extends Controller {
             ], 422);
         }
 
-        $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
+        if(!is_null($data['categoria_uuid'])){
+            $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
 
-        if(is_null($categoria)){
-            return $this->respJson([
-                'message' => 'Categoria não encontrada'
-            ], 422);
+            if(is_null($categoria)){
+                return $this->respJson([
+                    'message' => 'Categoria não encontrada'
+                ], 422);
+            }
+
+            $data = array_merge($data, ['categorias_id' => $categoria->id]);
         }
-
-        $data = array_merge($data, ['categorias_id' => $categoria->id]);
 
         $livro = $this->livroRepository->update($data, $livro->id);
 
