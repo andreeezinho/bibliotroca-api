@@ -148,7 +148,7 @@ class LivroController extends Controller {
         }
 
         $file = $request->getFileParams();
-        dd($file);
+        
         $image = $this->fileService->uploadFile($file['imagem'], '/img/livros')['hash_name'] ?? null;
 
         $livro = $this->livroRepository->update(['imagem' => $image], $livro->id);
