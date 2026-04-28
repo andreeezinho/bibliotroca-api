@@ -124,6 +124,16 @@ class LivroController extends Controller {
             ], 422);
         }
 
+        $categoria = $this->categoriaRepository->findBy('uuid', $data['categoria_uuid']);
+
+        if(is_null($categoria)){
+            return $this->respJson([
+                'message' => 'Categoria não encontrada'
+            ], 422);
+        }
+
+        $data = array_merge($data, ['categorias_id' => $categoria->id]);
+
         $livro = $this->livroRepository->update($data, $livro->id);
 
         if(is_null($livro)){
@@ -148,7 +158,7 @@ class LivroController extends Controller {
         }
 
         $file = $request->getFileParams();
-        
+
         $image = $this->fileService->uploadFile($file['imagem'], '/img/livros')['hash_name'] ?? null;
 
         $livro = $this->livroRepository->update(['imagem' => $image], $livro->id);
