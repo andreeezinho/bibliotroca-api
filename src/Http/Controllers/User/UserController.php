@@ -150,20 +150,9 @@ class UserController extends Controller {
             ], 422);
         }
 
-        $data = $request->getFileParams();
+        $file = $request->getFileParams();
 
-        $validate = $this->validate($data, [
-            'icone' => 'required'
-        ]);
-
-        if(is_null($validate)){
-            return $this->respJson([
-                'message' => 'Dados inválidos',
-                'errors' => $this->getErrors()
-            ], 422);
-        }
-
-        $saveIcon = $this->fileService->uploadFile($data['icone'], '/img/users');
+        $saveIcon = $this->fileService->uploadFile($file['icone'], '/img/users')['hash_name'] ?? null;
         
         if(is_null($saveIcon)){
             return $this->respJson([
@@ -171,7 +160,7 @@ class UserController extends Controller {
             ], 500);
         }
 
-        $update = $this->userRepository->update(['icone' => $saveIcon['hash_name']], $user->id);
+        $update = $this->userRepository->update(['icone' => $saveIcon], $user->id);
 
         if(is_null($update)){
             return $this->respJson([
@@ -180,8 +169,7 @@ class UserController extends Controller {
         }
         
         return $this->respJson([
-            'message' => 'Sucesso ao atualizar icone',
-            'data' => $saveIcon['hash_name']
+            'message' => 'Sucesso ao atualizar icone'
         ], 201);
     }
 
