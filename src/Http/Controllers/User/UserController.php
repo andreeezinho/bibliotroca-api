@@ -41,10 +41,8 @@ class UserController extends Controller {
             'usuario' => 'required|string|max:20',
             'nome' => 'required|string|max:255',
             'email' => 'required|email',
-            'cpf' => 'required|string|max:14',
             'telefone' => 'string|max:15',
-            'senha' => 'required|string|min:8',
-            'ativo' => 'max:1'
+            'senha' => 'required|string|min:8'
         ]);
 
         if(is_null($validate)){
@@ -83,7 +81,6 @@ class UserController extends Controller {
             'usuario' => 'required|string|max:20',
             'nome' => 'required|string|max:255',
             'email' => 'required|email',
-            'cpf' => 'required|string|max:14',
             'telefone' => 'required|string|max:15',
             'ativo' => 'max:1'
         ]);
