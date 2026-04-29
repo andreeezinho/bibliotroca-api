@@ -113,7 +113,7 @@ class LivroController extends Controller {
         ], 201);
     }
 
-    public function update(Request $request, $uuid){
+    public function update(Request $request, string $uuid){
         $data = $request->all();
 
         $livro = $this->livroRepository->findBy('uuid', $uuid);
