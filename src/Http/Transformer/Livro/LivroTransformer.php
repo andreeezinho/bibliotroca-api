@@ -24,7 +24,7 @@ class LivroTransformer {
             'descricao' => $data->descricao,
             'estado' => $data->estado,
             'imagem' => $data->imagem,
-            'usuarios' => UserTransformer::transform($this->userRepository->findBy('id', $data->usuarios_id)),
+            'usuario' => UserTransformer::transform($this->userRepository->findBy('id', $data->usuarios_id)),
             'trocado' => $data->trocado,
             'ativo' => $data->ativo,
             'created_at' => $data->created_at,
