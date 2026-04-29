@@ -17,12 +17,14 @@ class LivroController extends Controller {
     protected $categoriaRepository;
     protected $userRepository;
     protected $fileService;
+    protected $livroTransformer;
 
-    public function __construct(LivroRepositoryInterface $livroRepository, CategoriaRepositoryInterface $categoriaRepository, UserRepositoryInterface $userRepository, FileService $fileService){
+    public function __construct(LivroRepositoryInterface $livroRepository, CategoriaRepositoryInterface $categoriaRepository, UserRepositoryInterface $userRepository, FileService $fileService, LivroTransformer $livroTransformer){
         $this->livroRepository = $livroRepository;
         $this->categoriaRepository = $categoriaRepository;
         $this->userRepository = $userRepository;
         $this->fileService = $fileService;
+        $this->livroTransformer = $livroTransformer;
     }
 
     public function index(Request $request){
@@ -32,7 +34,7 @@ class LivroController extends Controller {
 
         return $this->respJson([
             'message' => 'Livros listados',
-            'data' => LivroTransformer::transformArray($livros)
+            'data' => $this->livroTransformer->transformArray($livros)
         ]);
     }
 
@@ -60,7 +62,7 @@ class LivroController extends Controller {
 
         return $this->respJson([
             'message' => 'Livros listados',
-            'data' => LivroTransformer::transformArray($livros)
+            'data' => $this->livroTransformer->transformArray($livros)
         ]);
     }
 
@@ -109,7 +111,7 @@ class LivroController extends Controller {
 
         return $this->respJson([
             'message' => 'Cadastro realizado com sucesso',
-            'data' => LivroTransformer::transform($livro)
+            'data' => $this->livroTransformer->transform($livro)
         ], 201);
     }
 
@@ -146,7 +148,7 @@ class LivroController extends Controller {
 
         return $this->respJson([
             'message' => 'Sucesso ao atualizar livro',
-            'data' => LivroTransformer::transform($livro)
+            'data' => $this->livroTransformer->transform($livro)
         ], 201);
     }
 

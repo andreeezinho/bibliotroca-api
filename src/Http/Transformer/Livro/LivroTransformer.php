@@ -4,10 +4,17 @@ namespace App\Http\Transformer\Livro;
 
 use App\Domain\Models\Livro\Livro;
 use App\Http\Transformer\User\UserTransformer;
+use App\Infra\Persistence\User\UserRepository;
 
 class LivroTransformer {
 
-    public static function transform(Livro $data) : array {
+    protected $userRepository;
+
+    public function __construct(){
+        $this->userRepository = new UserRepository();
+    }
+
+    public function transform(Livro $data) : array {
         return [
             'uuid' => $data->uuid,
             'titulo' => $data->titulo,
@@ -17,7 +24,7 @@ class LivroTransformer {
             'descricao' => $data->descricao,
             'estado' => $data->estado,
             'imagem' => $data->imagem,
-            'usuario' => UserTransformer::transform($this->userRepository->findBy('id', $data['usuarios_id'])),
+            'usuarios' => UserTransformer::transform($this->userRepository->findBy('id', $data->usuarios_id)),
             'trocado' => $data->trocado,
             'ativo' => $data->ativo,
             'created_at' => $data->created_at,
@@ -25,7 +32,7 @@ class LivroTransformer {
         ];
     }
 
-    public static function transformArray(array $produtos) : array {
+    public function transformArray(array $produtos) : array {
         return array_map(function(Livro $data) {
             return self::transform($data);
         }, $produtos);
