@@ -19,7 +19,7 @@ class GoogleAuthService {
     public function init() {
         $guzzleClient = new GuzzleClient(['curl' => [CURLOPT_SSL_VERIFYPEER => false]]);
         $this->client->setHttpClient($guzzleClient);
-        $this->client->setAuthConfig($_ENV['GOOGLE_CREDENTIALS']);
+        $this->client->setAuthConfig(json_decode($_ENV['GOOGLE_CREDENTIALS'], true));
         $this->client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
         $this->client->addScope('email');
         $this->client->addScope('profile');
