@@ -1,11 +1,11 @@
-# API RestFull 
+# Bibliotroca - API
 
-API RestFull Desenvolvida com PHP puro (sem frameworks externos) com objetivo de ser utilizada como base para iniciar projetos futuros com o básico já feito.
+API RestFull Desenvolvida com PHP puro (sem frameworks externos) com objetivo de ser utilizada como backend para o projeto Bibliotroca.
 
-O projeto busca implementar tecnologias e padrões que garantem a organização, escalabilidade e manutenções futuras. 
+O projeto busca incentivar e promover o acesso democrático e sustentável à leitura. Com o objetivo de facilitar o acesso a livros em certas regiões e incentivar a reutilização por parte dos leitores.
 
 ## Tecnologias, Padrões e Arquiteturas
-- PHP 8.3
+- PHP 8.5
 - Organização de Rotas Personalizadas
 - Autenticação via JWT
 - Autenticação via OAuth2 (Google API)
@@ -47,15 +47,14 @@ app
 - Rotas dinâmicas e personalizadas
 - Sistema de logs personalizáveis
 - Upload dinâmico de arquivos
-- Sistema de notificação de email
-- Customização de variáveis de ambiente via `.env`
+- Cadastro de Livros
 
 ## Execução do Projeto
 
 ### 1 - Clonar repositório
 
 ```bash
-git clone https://github.com/andreeezinho/sistema-pdv.git
+git clone https://github.com/andreeezinho/bibliotroca-api.git
 ```
 
 ### 2 - Remover '.example.' de `src/.env.example`
