@@ -94,6 +94,18 @@ trait CrudTrait {
                 continue;
             }
 
+            if ($field === 'titulo') {
+                $conditions[] = "$field LIKE ?";
+                $params[] = "%$value%";
+                continue;
+            }
+
+            if ($field === 'autor') {
+                $conditions[] = "$field LIKE ?";
+                $params[] = "%$value%";
+                continue;
+            }
+
             if ($field === 'email') {
                 $conditions[] = "$field LIKE ?";
                 $params[] = "%$value%";
