@@ -4,3 +4,4 @@
 [2026-04-23T20:45:40.838713-03:00] app_logs.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'usuarios_id' doesn't have a default value [] []
 [2026-04-23T20:45:59.523899-03:00] app_logs.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'usuarios_id' doesn't have a default value [] []
 [2026-04-23T22:03:35.789595-03:00] app_logs.ERROR: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'situacao' at row 1 [] []
+[2026-05-14T19:25:39.508125-03:00] app_logs.INFO: Usuário logado {"uuid":"0661993e-7ae8-4146-8602-403f5edb92ea"} []

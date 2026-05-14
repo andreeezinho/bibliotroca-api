@@ -88,27 +88,10 @@ trait CrudTrait {
         $conditions = [];
 
         foreach ($criteria as $field => $value) {
-            if ($field === 'nome') {
-                $conditions[] = "$field LIKE ?";
-                $params[] = "%$value%";
-                continue;
-            }
 
-            if ($field === 'titulo') {
-                $conditions[] = "$field LIKE ?";
-                $params[] = "%$value%";
-                continue;
-            }
-
-            if ($field === 'autor') {
-                $conditions[] = "$field LIKE ?";
-                $params[] = "%$value%";
-                continue;
-            }
-
-            if ($field === 'email') {
-                $conditions[] = "$field LIKE ?";
-                $params[] = "%$value%";
+            if (in_array($field, ['nome', 'titulo', 'autor', 'email'])) {
+                $conditions[] = "$field LIKE :$field";
+                $params[":$field"] = "%$value%";
                 continue;
             }
 

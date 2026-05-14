@@ -29,7 +29,7 @@ class LivroController extends Controller {
 
     public function index(Request $request){
         $params = $request->all();
-
+        
         $livros = $this->livroRepository->all($params);
 
         return $this->respJson([
